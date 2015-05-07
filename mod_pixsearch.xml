@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension
+	type="module"
+	version="3.1"
+	client="site"
+	method="upgrade"
+>
+	<name>mod_pixsearch</name>
+	<author>Johan Sundell</author>
+	<creationDate>Jun 2013</creationDate>
+	<copyright>Copyright (C) 2013 - 2015 Johan Sundell. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>johan@pixpro.net</authorEmail>
+	<authorUrl>labs.pixpro.net</authorUrl>
+	<version>0.6</version>
+	<description>Simple AJAX search module</description>
+	<files>
+		<filename module="mod_pixsearch">mod_pixsearch.php</filename>
+		<folder>tmpl</folder>
+		<folder>fields</folder>
+		<folder>media</folder>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<filename>mod_pixsearch.xml</filename>
+	</files>
+	<languages folder="site">
+		<language tag="en-GB">language/en-GB.mod_pixsearch.ini</language>
+		<language tag="en-GB">language/en-GB.mod_pixsearch.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params" addfieldpath="/modules/mod_pixsearch/fields">
+			<fieldset name="basic">
+				<field
+					name="langhack"
+					type="langhack"
+				/>
+				<field
+					name="ordering"
+					type="list"
+					default="newest"
+					label="MOD_PIXSEARCH_LIST_LABEL"
+					description="MOD_PIXSEARCH_LIST_DESC"
+				>
+					<option value="newest">COM_SEARCH_NEWEST_FIRST</option>
+					<option value="oldest">COM_SEARCH_OLDEST_FIRST</option>
+					<option value="popular">COM_SEARCH_MOST_POPULAR</option>
+					<option value="alpha">COM_SEARCH_ALPHABETICAL</option>
+					<option value="category">JCATEGORY</option>
+				</field>
+				<field
+					name="use_grouping"
+					type="radio"
+					default="0"
+					label="MOD_PIXSEARCH_USE_GROUPING_LABEL"
+					description="MOD_PIXSEARCH_USE_GROUPING_DESC"
+				>
+					<option value="0">JNo</option>
+					<option value="1">JYes</option>
+				</field>
+				<field
+					name="searchphrase"
+					type="list"
+					default="all"
+					label="MOD_PIXSEARCH_SEARCH_MODE_LABEL"
+					description="MOD_PIXSEARCH_SEARCH_MODE_DESC"
+				>
+					<option value="all">COM_SEARCH_ALL_WORDS</option>
+					<option value="any">COM_SEARCH_ANY_WORDS</option>
+					<option value="exact">COM_SEARCH_EXACT_PHRASE</option>
+				</field>
+				<field
+					name="pagesize"
+					type="text"
+					default="10"
+					label="MOD_PIXSEARCH_PAGE_SIZE_LABEL"
+					description="MOD_PIXSEARCH_PAGE_SIZE_DESC"
+				/>
+				<field
+					name="use_images"
+					type="radio"
+					default="1"
+					label="MOD_PIXSEARCH_USE_IMAGES_LABEL"
+					description="MOD_PIXSEARCH_USE_IMAGES_DESC"
+				>
+					<option value="0">JNo</option>
+					<option value="1">JYes</option>
+				</field>
+				<field
+					name="show_readmore"
+					type="radio"
+					default="1"
+					label="MOD_PIXSEARCH_SHOW_READMORE_LABEL"
+					description="MOD_PIXSEARCH_SHOW_READMORE_DESC"
+				>
+					<option value="0">JNo</option>
+					<option value="1">JYes</option>
+				</field>
+				<field
+					name="areas"
+					type="areas"
+					label="MOD_PIXSEARCH_AREAS_LABEL"
+					description="MOD_PIXSEARCH_AREAS_DESC"
+				/>
+			</fieldset>
+			<fieldset name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC"
+				/>
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+				/>
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC"
+				>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC"
+				/>
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static"
+				>
+					<option value="static"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
