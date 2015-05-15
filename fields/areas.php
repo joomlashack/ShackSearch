@@ -14,17 +14,29 @@ class JFormFieldAreas extends JFormFieldCheckboxes
 	
 	protected function getOptions()
 	{
-		$areas = array();
-		
-		JPluginHelper::importPlugin('search');
-		$dispatcher = JEventDispatcher::getInstance();
-		$searchareas = $dispatcher->trigger('onContentSearchAreas');
-		
-		foreach ($searchareas as $area)
+		$ver = new JVersion();
+		if( (int)$ver->getShortVersion() == 2 )
 		{
-			if (is_array($area))
+			require_once JPATH_SITE.'/components/com_search/models/search.php';
+			$model = new SearchModelSearch();
+			
+			$areas = $model->getAreas();
+				
+		}
+		else
+		{
+			$areas = array();
+			
+			JPluginHelper::importPlugin('search');
+			$dispatcher = JEventDispatcher::getInstance();
+			$searchareas = $dispatcher->trigger('onContentSearchAreas');
+			
+			foreach ($searchareas as $area)
 			{
-				$areas = array_merge($areas, $area);
+				if (is_array($area))
+				{
+					$areas = array_merge($areas, $area);
+				}
 			}
 		}
 
