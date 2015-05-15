@@ -23,7 +23,7 @@ class JFormFieldAreas extends JFormFieldCheckboxes
 			$areas = $model->getAreas();
 				
 		}
-		else
+		else if( (int)$ver->getShortVersion() == 3 )
 		{
 			$areas = array();
 			
