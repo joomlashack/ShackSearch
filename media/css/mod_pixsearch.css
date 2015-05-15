@@ -1,8 +1,15 @@
 @CHARSET "UTF-8";
 .pixsearch_popup
 {
+	margin-bottom: 10px;
     background-color: #FFFFFF;
-    border: 4px solid #EEEEEE;
+	border: 1px solid #DDDDDD;
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.2);
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 }
 
 .pixsearch_popup .ps_head .ps_result
@@ -46,8 +53,9 @@
 
 .pixsearch_popup .ps_footer_links
 {
-	border-top:2px solid #EEEEEE;
-	padding:5px;
+	border-top: 2px solid #EEEEEE;
+	padding: 0px 5px;
+	line-height: 28px;
 	overflow: hidden;
 }
 
@@ -92,8 +100,8 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
     width: 100%;
-    padding: 4px 26px 4px 4px;
-    min-height: 26px;
+    padding: 4px 26px 4px 6px;
+    min-height: 28px;
     border: 1px solid #DDDDDD;
 }
 
@@ -130,13 +138,13 @@
 	text-align: center;
 }
 .ps_class_search_search:after {
-	content: "\f002";
+	content: "\f002"; /* magnifying glass */
 }
 .ps_class_search_spinner:after {
 	-webkit-animation: fa-spin 1s infinite steps(8);
 	animation: fa-spin 1s infinite steps(8);
-	content: "\f110";
+	content: "\f110"; /* spinner */
 }
 .ps_class_search_clear:after {
-	content: "\f014";
+	content: "\f00d"; /* cross */
 }
