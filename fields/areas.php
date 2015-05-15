@@ -34,7 +34,9 @@ class JFormFieldAreas extends JFormFieldCheckboxes
 		{
 			foreach( $areas as $key => $area )
 			{
-				$options[] = JHtml::_( 'select.option', $key, JText::_( $area ) );
+				$tmp = JHtml::_( 'select.option', $key, JText::_( $area ) );
+				$tmp->checked = '';
+				$options[] = $tmp;
 			}
 				
 		}
