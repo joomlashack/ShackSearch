@@ -16,6 +16,7 @@ class modPixSearchHelper
 	static function init( $params, $id )
 	{
 		$document = JFactory::getDocument();
+		$document->addStyleSheet( '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' );
 		$document->addStyleSheet( JURI::base().'modules/mod_pixsearch/media/css/mod_pixsearch.css' );
 	
 		$settings = new stdClass();
