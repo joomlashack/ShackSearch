@@ -10,6 +10,7 @@
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
+	z-index: 999;
 }
 
 .pixsearch_popup .ps_head .ps_result
@@ -120,20 +121,18 @@
 	position: absolute;
 	top: 0;
 	right: 0;
-	height: 26px;
-	width: 26px;
+	height: 28px;
+	width: 28px;
 	cursor: pointer;
 }
 .ps_class_search_search:after,
 .ps_class_search_spinner:after,
 .ps_class_search_clear:after {
-	position: relative;
-	top: 4px;
-	left: 4px;
+	display: block;
 	font-family: 'FontAwesome';
 	font-size: 18px;
-	line-height: 18px;
-	height: 18px;
+	line-height: 28px;
+	height: 28px;
 	width: 28px;
 	text-align: center;
 }
