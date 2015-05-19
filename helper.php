@@ -36,6 +36,7 @@ class modPixSearchHelper
 		$settings->use_images = (boolean)$params->get( 'use_images', true );
 		$settings->show_read_more = (boolean)$params->get( 'show_readmore', true );
 		$settings->areas = $params->get( 'areas', array() );
+		$settings->link_read_more = JRoute::_( 'index.php?option=com_search' );
 	
 		$document->addScriptDeclaration( 'var ps_settings_'.$id.' = '.json_encode( $settings ).';' );
 		$document->addScript(JURI::root().'modules/mod_pixsearch/media/js/pixsearch.js' );
