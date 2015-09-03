@@ -43,4 +43,101 @@ class modPixSearchHelper
 		$document->addScriptDeclaration( 'pixsearches.push( '.$id.');' );
 		$document->addScript( JURI::root().'modules/mod_pixsearch/media/js/gpixsearch/gpixsearch.nocache.js' );
 	}
+	
+	public static function getAjax()
+	{
+		require_once JPATH_SITE.'/components/com_search/models/search.php';
+		require_once JPATH_ADMINISTRATOR.'/components/com_search/helpers/search.php';
+		
+		$input = JFactory::getApplication()->input;
+		$word = $input->getString( 'searchword', '' );
+		$ordering = $input->getString( 'ordering', 'newest' );
+		$searchphrase = $input->getString( 'searchphrase', 'all' );
+		$results = array();
+		$searchResult = new stdClass();
+		$total = 0;
+        $error = null;
+        if( $word != '' )
+		{
+			$model = new SearchModelSearch();
+			
+			// log the search
+			SearchHelper::logSearch($word);
+			
+			$lang = JFactory::getLanguage();
+			$upper_limit = $lang->getUpperLimitSearchWord();
+			$lower_limit = $lang->getLowerLimitSearchWord();
+			if (SearchHelper::limitSearchWord($searchword))
+			{
+				$error = JText::sprintf('COM_SEARCH_ERROR_SEARCH_MESSAGE', $lower_limit, $upper_limit);
+			}
+			
+			if (SearchHelper::santiseSearchWord($word, $model->getState()->get( 'match' ) ) )
+			{
+				$error = JText::_('COM_SEARCH_ERROR_IGNOREKEYWORD');
+			}
+			
+			$model->getState()->set('keyword', $word);
+			
+			if( $error == null )
+			{
+				$model->setSearch( $word, $searchphrase, $ordering );
+				$results = $model->getData();
+				$total = $model->getTotal();
+				
+				require_once JPATH_SITE . '/components/com_content/helpers/route.php';
+				
+				for ($i=0, $count = count($results); $i < $count; $i++)
+				{
+					$row = &$results[$i]->text;
+						
+					if ($model->getState()->get('match') == 'exact')
+					{
+						$searchwords = array($word);
+						$needle = $word;
+					}
+					else
+					{
+						$searchworda = preg_replace('#\xE3\x80\x80#s', ' ', $word);
+						$searchwords = preg_split("/\s+/u", $searchworda);
+						$needle = $searchwords[0];
+					}
+						
+					$row = SearchHelper::prepareSearchContent($row, $needle);
+					$searchwords = array_unique($searchwords);
+					$searchRegex = '#(';
+					$x = 0;
+						
+					foreach ($searchwords as $k => $hlword)
+					{
+						$searchRegex .= ($x == 0 ? '' : '|');
+						$searchRegex .= preg_quote($hlword, '#');
+						$x++;
+					}
+					$searchRegex .= ')#iu';
+						
+					$row = preg_replace($searchRegex, '<span class="highlight">\0</span>', $row);
+						
+					$result = &$results[$i];
+					if ($result->created)
+					{
+						$created = JHtml::_('date', $result->created, JText::_('DATE_FORMAT_LC3'));
+					}
+					else
+					{
+						$created = '';
+					}
+						
+					$result->text		= JHtml::_('content.prepare', $result->text, '', 'com_search.search');
+					$result->created	= $created;
+					$result->count		= $i + 1;
+					$result->href = JRoute::_( $result->href );
+				}
+			}
+		}
+		$searchResult->items = $results;
+		$searchResult->total = $total;
+		
+		return '('.json_encode( $searchResult ).');';
+	}
 }
