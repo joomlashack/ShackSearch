@@ -33,6 +33,7 @@
 				<field
 					name="langhack"
 					type="langhack"
+					label=""
 				/>
 				<field
 					name="ordering"
