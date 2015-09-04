@@ -1,5 +1,5 @@
 /**
-* @copyright	Copyright (C) 2013 Johan Sundell. All rights reserved.
+* @copyright	Copyright ©2015 You Rock AB. All rights reserved.
 * @license		GNU General Public License version 2 or later; see LICENSE.txt
 */
 
