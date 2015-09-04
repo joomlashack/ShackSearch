@@ -5,14 +5,14 @@
 	client="site"
 	method="upgrade"
 >
-	<name>mod_pixsearch</name>
+	<name>PixSearch</name>
 	<author>Johan Sundell</author>
 	<creationDate>Jun 2013</creationDate>
 	<copyright>Copyright ©2015 You Rock AB. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>johan@pixpro.net</authorEmail>
 	<authorUrl>www.pixpro.net/labs</authorUrl>
-	<version>0.10.2</version>
+	<version>0.10.3</version>
 	<description>MOD_PIXSEARCH_XML_DESCRIPTION</description>
 	<files>
 		<filename module="mod_pixsearch">mod_pixsearch.php</filename>
