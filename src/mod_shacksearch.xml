@@ -20,7 +20,6 @@
 	
 	<files>
 		<filename module="mod_shacksearch">mod_shacksearch.php</filename>
-		<filename>include.php</filename>
 		<folder>tmpl</folder>
 		<folder>fields</folder>
 		<folder>library</folder>
@@ -158,17 +157,9 @@
         <namespace>ShackSearch</namespace>
         <license>free</license>
         <targetplatform>3.*</targetplatform>
-        <relatedExtensions>
-            <extension
-                type="library"
-                element="allediaframework">AllediaFramework</extension>
-            <extension
-                type="plugin"
-                group="system"
-                element="ossystem"
-                publish="true"
-                ordering="first">OSSystem</extension>
-        </relatedExtensions>
 		<include>AllediaFreeDefaultFiles</include>
+
+        <relatedExtensions/>
+
     </alledia>
 </extension>
