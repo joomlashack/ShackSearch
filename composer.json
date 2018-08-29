@@ -1,0 +1,23 @@
+{
+    "name"             : "joomlashack/shacksearch",
+    "description"      : "Shack Search",
+    "minimum-stability": "stable",
+    "license"          : "GPL-2+",
+    "type"             : "joomla.module",
+    "extra"            : {
+        "element"        : "mod_shacksearch",
+        "element-short"  : "shacksearch",
+        "name"           : "Shack Search",
+        "client"         : "site",
+        "package-license": "free"
+    },
+    "authors"          : [
+        {
+            "name" : "Joomlashack",
+            "email": "help@joomlashack.com"
+        }
+    ],
+    "require"          : {
+        "php"       : ">= 5.3"
+    }
+}
