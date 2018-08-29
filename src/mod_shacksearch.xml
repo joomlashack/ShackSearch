@@ -126,6 +126,14 @@
                 <field name="cachemode"
                        type="hidden"
                        default="static"/>
+                
+                <field
+                    type="customfooter"
+                    name="customfooter"
+                    media="mod_shacksearch"
+                    showgoproad="0"
+                    jedurl="http://extensions.joomla.org/extension/shack-search" />
+                
             </fieldset>
         </fields>
     </config>
