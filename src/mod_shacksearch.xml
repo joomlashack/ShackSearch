@@ -26,7 +26,6 @@
 		<folder>library</folder>
 		<folder>media</folder>
 		<filename>helper.php</filename>
-		<filename>index.html</filename>
 		<filename>mod_shacksearch.xml</filename>
 	</files>
 	<languages folder="site">
