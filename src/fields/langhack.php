@@ -27,22 +27,22 @@ JFormHelper::loadFieldClass('hidden');
 
 class JFormFieldLangHack extends JFormFieldHidden
 {
-	protected $type = 'LangHack';
+    protected $type = 'LangHack';
 
-	public function __construct($form = null)
-	{
-		parent::__construct($form);
+    public function __construct($form = null)
+    {
+        parent::__construct($form);
 
-		JFactory::getLanguage()->load( 'com_search' );
-	}
+        JFactory::getLanguage()->load('com_search');
+    }
 
-	protected function getInput()
-	{
-		return null;
-	}
+    protected function getInput()
+    {
+        return null;
+    }
 
-	public function __get($name)
-	{
-		return null;
-	}
+    public function __get($name)
+    {
+        return null;
+    }
 }

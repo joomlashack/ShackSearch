@@ -25,15 +25,15 @@
 
 defined('_JEXEC') or die;
 
-require_once dirname(__FILE__).'/helper.php';
-$params = modShackSearchHelper::getParams( $params );
-modShackSearchHelper::init( $params, $module->id );
+require_once dirname(__FILE__) . '/helper.php';
+$params = modShackSearchHelper::getParams($params);
+modShackSearchHelper::init($params, $module->id);
 
 $ver = new JVersion;
 $ver = $ver->getShortVersion();
 
 $version = $ver[0];
 
-$moduleclass_sfx = htmlspecialchars( $params->get( 'moduleclass_sfx' ) );
-require JModuleHelper::getLayoutPath( 'mod_shacksearch', $params->get( 'layout', 'default' ) );
+$moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
+require JModuleHelper::getLayoutPath('mod_shacksearch', $params->get('layout', 'default'));
 

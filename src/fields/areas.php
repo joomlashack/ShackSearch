@@ -29,49 +29,44 @@ JFormHelper::loadFieldClass('checkboxes');
 
 class JFormFieldAreas extends JFormFieldCheckboxes
 {
-	protected $type = 'Areas';
+    protected $type = 'Areas';
 
-	protected function getOptions()
-	{
-		$ver = new JVersion();
-		if( (int)$ver->getShortVersion() == 2 )
-		{
-			require_once JPATH_SITE.'/components/com_search/models/search.php';
-			$model = new SearchModelSearch();
+    protected function getOptions()
+    {
+        $ver = new JVersion();
+        if ((int)$ver->getShortVersion() == 2) {
+            require_once JPATH_SITE . '/components/com_search/models/search.php';
+            $model = new SearchModelSearch();
 
-			$areas = $model->getAreas();
+            $areas = $model->getAreas();
 
-		}
-		else if( (int)$ver->getShortVersion() == 3 )
-		{
-			$areas = array();
+        } else {
+            if ((int)$ver->getShortVersion() == 3) {
+                $areas = array();
 
-			JPluginHelper::importPlugin('search');
-			$dispatcher = JEventDispatcher::getInstance();
-			$searchareas = $dispatcher->trigger('onContentSearchAreas');
+                JPluginHelper::importPlugin('search');
+                $dispatcher  = JEventDispatcher::getInstance();
+                $searchareas = $dispatcher->trigger('onContentSearchAreas');
 
-			foreach ($searchareas as $area)
-			{
-				if (is_array($area))
-				{
-					$areas = array_merge($areas, $area);
-				}
-			}
-		}
+                foreach ($searchareas as $area) {
+                    if (is_array($area)) {
+                        $areas = array_merge($areas, $area);
+                    }
+                }
+            }
+        }
 
-		$options = array();
+        $options = array();
 
-		if( $areas )
-		{
-			foreach( $areas as $key => $area )
-			{
-				$tmp = JHtml::_( 'select.option', $key, JText::_( $area ) );
-				$tmp->checked = '';
-				$options[] = $tmp;
-			}
+        if ($areas) {
+            foreach ($areas as $key => $area) {
+                $tmp          = JHtml::_('select.option', $key, JText::_($area));
+                $tmp->checked = '';
+                $options[]    = $tmp;
+            }
 
-		}
-		$options = array_merge( parent::getOptions(), $options );
-		return $options;
-	}
+        }
+        $options = array_merge(parent::getOptions(), $options);
+        return $options;
+    }
 }
