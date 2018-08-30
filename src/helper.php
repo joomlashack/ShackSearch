@@ -20,12 +20,12 @@ class modShackSearchHelper
 		$document->addStyleSheet( JURI::base().'modules/mod_shacksearch/media/css/mod_shacksearch.css' );
 	
 		$settings = new stdClass();
-		$settings->searchText = JText::_( 'MOD_PIXSEARCH_SEARCH_LABEL' );
-		$settings->nextLinkText = JText::_( 'MOD_PIXSEARCH_NEXT_LABEL' );
-		$settings->prevLinkText = JText::_( 'MOD_PIXSEARCH_PREV_LABEL' );
-		$settings->viewAllText = JText::_( 'MOD_PIXSEARCH_VIEW_ALL_LABEL' );
-		$settings->resultText = JText::_( 'MOD_PIXSEARCH_RESULTS_LABEL' );
-		$settings->readMoreText = JText::_( 'MOD_PIXSEARCH_READ_MORE_LABEL' );
+		$settings->searchText = JText::_( 'MOD_SHACKSEARCH_SEARCH_LABEL' );
+		$settings->nextLinkText = JText::_( 'MOD_SHACKSEARCH_NEXT_LABEL' );
+		$settings->prevLinkText = JText::_( 'MOD_SHACKSEARCH_PREV_LABEL' );
+		$settings->viewAllText = JText::_( 'MOD_SHACKSEARCH_VIEW_ALL_LABEL' );
+		$settings->resultText = JText::_( 'MOD_SHACKSEARCH_RESULTS_LABEL' );
+		$settings->readMoreText = JText::_( 'MOD_SHACKSEARCH_READ_MORE_LABEL' );
 		$settings->baseUrl = JURI::root();
 		
 		$settings->ordering = $params->get( 'ordering', 'newest' );
