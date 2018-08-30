@@ -2,12 +2,12 @@
 <extension type="module" version="3.7" client="site" method="upgrade">
     <name>Shack Search</name>
     <author>JoomlaShack</author>
-    <creationDate>August 30 2018</creationDate>
+    <creationDate>August 31 2018</creationDate>
     <copyright>Copyright ©2018 Joomlashack. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
     <authorEmail>help@joomlashack.com</authorEmail>
     <authorUrl>https://www.joomlashack.com</authorUrl>
-    <version>1.1.0b2</version>
+    <version>1.1.0</version>
     <variant>FREE</variant>
     <description>MOD_SHACKSEARCH_XML_DESCRIPTION</description>
 
