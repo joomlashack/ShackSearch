@@ -29,8 +29,7 @@
         <fields name="params" addfieldpath="/modules/mod_shacksearch/fields">
             <fieldset name="basic">
                 <field name="langhack"
-                       type="langhack"
-                       label=""/>
+                       type="shacksearch.langhack"/>
 
                 <field name="ordering"
                        type="list"
@@ -46,6 +45,7 @@
 
                 <field name="use_grouping"
                        type="radio"
+                       class="btn-group btn-group-yesno"
                        default="0"
                        label="MOD_SHACKSEARCH_USE_GROUPING_LABEL"
                        description="MOD_SHACKSEARCH_USE_GROUPING_DESC">
@@ -72,6 +72,7 @@
                 <field name="use_images"
                        type="radio"
                        default="1"
+                       class="btn-group btn-group-yesno"
                        label="MOD_SHACKSEARCH_USE_IMAGES_LABEL"
                        description="MOD_SHACKSEARCH_USE_IMAGES_DESC">
                     <option value="0">JNo</option>
@@ -81,6 +82,7 @@
                 <field name="show_readmore"
                        type="radio"
                        default="1"
+                       class="btn-group btn-group-yesno"
                        label="MOD_SHACKSEARCH_SHOW_READMORE_LABEL"
                        description="MOD_SHACKSEARCH_SHOW_READMORE_DESC">
                     <option value="0">JNo</option>
@@ -88,7 +90,7 @@
                 </field>
 
                 <field name="areas"
-                       type="areas"
+                       type="shacksearch.areas"
                        label="MOD_SHACKSEARCH_AREAS_LABEL"
                        description="MOD_SHACKSEARCH_AREAS_DESC"/>
             </fieldset>

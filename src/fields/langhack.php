@@ -22,10 +22,12 @@
  * You should have received a copy of the GNU General Public License
  * along with ShackSearch.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 defined('JPATH_PLATFORM') or die;
+
 JFormHelper::loadFieldClass('hidden');
 
-class JFormFieldLangHack extends JFormFieldHidden
+class ShacksearchFormFieldLangHack extends JFormFieldHidden
 {
     protected $type = 'LangHack';
 
@@ -37,6 +39,11 @@ class JFormFieldLangHack extends JFormFieldHidden
     }
 
     protected function getInput()
+    {
+        return null;
+    }
+
+    protected function getLabel()
     {
         return null;
     }

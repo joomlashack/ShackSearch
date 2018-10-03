@@ -25,34 +25,36 @@
 defined('JPATH_PLATFORM') or die;
 
 jimport('joomla.form.helper');
-JFormHelper::loadFieldClass('checkboxes');
+JFormHelper::loadFieldClass('list');
 
-class JFormFieldAreas extends JFormFieldCheckboxes
+class ShacksearchFormFieldAreas extends JFormFieldList
 {
     protected $type = 'Areas';
 
+    public function setup(\SimpleXMLElement $element, $value, $group = null)
+    {
+        if (parent::setup($element, $value, $group)) {
+            if (!$element['multiple']) {
+                $this->multiple = true;
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
     protected function getOptions()
     {
-        $ver = new JVersion();
-        if ((int)$ver->getShortVersion() == 2) {
-            require_once JPATH_SITE . '/components/com_search/models/search.php';
-            $model = new SearchModelSearch();
+        $areas = array();
 
-            $areas = $model->getAreas();
+        JPluginHelper::importPlugin('search');
+        $dispatcher  = JEventDispatcher::getInstance();
+        $searchareas = $dispatcher->trigger('onContentSearchAreas');
 
-        } else {
-            if ((int)$ver->getShortVersion() == 3) {
-                $areas = array();
-
-                JPluginHelper::importPlugin('search');
-                $dispatcher  = JEventDispatcher::getInstance();
-                $searchareas = $dispatcher->trigger('onContentSearchAreas');
-
-                foreach ($searchareas as $area) {
-                    if (is_array($area)) {
-                        $areas = array_merge($areas, $area);
-                    }
-                }
+        foreach ($searchareas as $area) {
+            if (is_array($area)) {
+                $areas = array_merge($areas, $area);
             }
         }
 
@@ -66,7 +68,9 @@ class JFormFieldAreas extends JFormFieldCheckboxes
             }
 
         }
+
         $options = array_merge(parent::getOptions(), $options);
+
         return $options;
     }
 }
