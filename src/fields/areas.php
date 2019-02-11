@@ -3,8 +3,8 @@
  * @package   ShackSearch
  * @author    Johan Sundell <labs@pixpro.net>
  * @contact   www.joomlashack.com, help@joomlashack.com
- * @copyright Copyright © You Rock AB 2003-2017 All Rights Reserved.
- * @copyright 2018 Open Source Training, LLC. All rights reserved
+ * @copyright 2003-2017 You Rock AB All Rights Reserved.
+ * @copyright 2018-2019 Joomlashack.com. All rights reserved
  * @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
  *
  * This file is part of ShackSearch.
