@@ -103,7 +103,7 @@ class modShackSearchHelper
                 require_once JPATH_SITE . '/components/com_content/helpers/route.php';
 
                 for ($i = 0, $count = count($results); $i < $count; $i++) {
-                    $row = &$results[$i]->text;
+                    $result = &$results[$i];
 
                     if ($model->getState()->get('match') == 'exact') {
                         $searchwords = array($word);
@@ -114,10 +114,10 @@ class modShackSearchHelper
                         $needle      = $searchwords[0];
                     }
 
-                    $row         = SearchHelper::prepareSearchContent($row, $needle);
-                    $searchwords = array_unique($searchwords);
-                    $searchRegex = '#(';
-                    $x           = 0;
+                    $result->text = SearchHelper::prepareSearchContent($result->text, $needle);
+                    $searchwords  = array_unique($searchwords);
+                    $searchRegex  = '#(';
+                    $x            = 0;
 
                     foreach ($searchwords as $k => $hlword) {
                         $searchRegex .= ($x == 0 ? '' : '|');
@@ -126,9 +126,10 @@ class modShackSearchHelper
                     }
                     $searchRegex .= ')#iu';
 
-                    $row = preg_replace($searchRegex, '<span class="highlight">\0</span>', $row);
+                    $highlighter   = '<span class="highlight">\0</span>';
+                    $result->text  = preg_replace($searchRegex, $highlighter, $result->text);
+                    $result->title = preg_replace($searchRegex, $highlighter, $result->title);
 
-                    $result = &$results[$i];
                     if ($result->created) {
                         $created = JHtml::_('date', $result->created, JText::_('DATE_FORMAT_LC3'));
                     } else {

@@ -42,7 +42,9 @@
 }
 
 .shacksearch_popup .ps_row_0_innerbody .highlight,
-.shacksearch_popup .ps_row_1_innerbody .highlight {
+.shacksearch_popup .ps_row_1_innerbody .highlight,
+.shacksearch_popup .ps_row_0_subhead .highlight,
+.shacksearch_popup .ps_row_0_subhead .highlight {
     font-weight: bold;
 }
 
