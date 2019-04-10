@@ -23,44 +23,47 @@
  * along with ShackSearch.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Joomla\Registry\Registry;
+
 defined('_JEXEC') or die;
 
 class modShackSearchHelper
 {
-    static function getParams(&$params)
+    /**
+     * @param Registry $params
+     * @param int      $id
+     */
+    public static function init(Registry $params, $id)
     {
-        return $params;
-    }
+        JHtml::_('stylesheet', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+        JHtml::_('stylesheet', 'mod_shacksearch/mod_shacksearch.css', array('relative' => true));
 
-    static function init($params, $id)
-    {
+        $settings = (object)array(
+            'searchText'     => JText::_('MOD_SHACKSEARCH_SEARCH_LABEL'),
+            'nextLinkText'   => JText::_('MOD_SHACKSEARCH_NEXT_LABEL'),
+            'prevLinkText'   => JText::_('MOD_SHACKSEARCH_PREV_LABEL'),
+            'viewAllText'    => JText::_('MOD_SHACKSEARCH_VIEW_ALL_LABEL'),
+            'resultText'     => JText::_('MOD_SHACKSEARCH_RESULTS_LABEL'),
+            'readMoreText'   => JText::_('MOD_SHACKSEARCH_READ_MORE_LABEL'),
+            'baseUrl'        => JURI::root(),
+            'ordering'       => $params->get('ordering', 'newest'),
+            'use_grouping'   => (boolean)$params->get('use_grouping', false),
+            'searchType'     => $params->get('searchphrase', 'all'),
+            'pagesize'       => (int)$params->get('pagesize', 10),
+            'numsearchstart' => (int)$params->get('searchstartchar', 4),
+            'use_images'     => (boolean)$params->get('use_images', true),
+            'show_read_more' => (boolean)$params->get('show_readmore', true),
+            'areas'          => $params->get('areas', array()),
+            'link_read_more' => JRoute::_('index.php?option=com_search')
+        );
+
         $document = JFactory::getDocument();
-        $document->addStyleSheet('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
-        $document->addStyleSheet(JURI::base() . 'modules/mod_shacksearch/media/css/mod_shacksearch.css');
-
-        $settings               = new stdClass();
-        $settings->searchText   = JText::_('MOD_SHACKSEARCH_SEARCH_LABEL');
-        $settings->nextLinkText = JText::_('MOD_SHACKSEARCH_NEXT_LABEL');
-        $settings->prevLinkText = JText::_('MOD_SHACKSEARCH_PREV_LABEL');
-        $settings->viewAllText  = JText::_('MOD_SHACKSEARCH_VIEW_ALL_LABEL');
-        $settings->resultText   = JText::_('MOD_SHACKSEARCH_RESULTS_LABEL');
-        $settings->readMoreText = JText::_('MOD_SHACKSEARCH_READ_MORE_LABEL');
-        $settings->baseUrl      = JURI::root();
-
-        $settings->ordering       = $params->get('ordering', 'newest');
-        $settings->use_grouping   = (boolean)$params->get('use_grouping', false);
-        $settings->searchType     = $params->get('searchphrase', 'all');
-        $settings->pagesize       = (int)$params->get('pagesize', 10);
-        $settings->numsearchstart = (int)$params->get('searchstartchar', 4);
-        $settings->use_images     = (boolean)$params->get('use_images', true);
-        $settings->show_read_more = (boolean)$params->get('show_readmore', true);
-        $settings->areas          = $params->get('areas', array());
-        $settings->link_read_more = JRoute::_('index.php?option=com_search');
 
         $document->addScriptDeclaration('var ps_settings_' . $id . ' = ' . json_encode($settings) . ';');
-        $document->addScript(JURI::root() . 'modules/mod_shacksearch/media/js/shacksearch.js');
+        JHtml::_('script', 'mod_shacksearch/shacksearch.js', array('relative' => true));
+
         $document->addScriptDeclaration('shacksearches.push( ' . $id . ');');
-        $document->addScript(JURI::root() . 'modules/mod_shacksearch/media/js/gshacksearch/gshacksearch.nocache.js');
+        JHtml::_('script', 'mod_shacksearch/gshacksearch/gshacksearch.nocache.js', array('relative' => true));
     }
 
     public static function getAjax()
@@ -80,7 +83,7 @@ class modShackSearchHelper
             $model = new SearchModelSearch();
 
             // log the search
-            SearchHelper::logSearch($word);
+            JSearchHelper::logSearch($word, 'com_search');
 
             $lang        = JFactory::getLanguage();
             $upper_limit = $lang->getUpperLimitSearchWord();

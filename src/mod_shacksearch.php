@@ -23,10 +23,27 @@
  * along with ShackSearch.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-defined('_JEXEC') or die;
+use Joomla\Registry\Registry;
 
-require_once dirname(__FILE__) . '/helper.php';
-$params = modShackSearchHelper::getParams($params);
+defined('_JEXEC') or die();
+
+/**
+ * @var object    $module
+ * @var array     $attribs
+ * @var array     $chrome
+ * @var string    $scope
+ * @var Registry  $params
+ * @var string    $template
+ * @var string    $path
+ * @var JLanguage $lang
+ * @var string    $coreLanguageDirectory
+ * @var string    $extensionLanguageDirectory
+ * @var string[]  $langPaths
+ * @var string    $content
+ */
+
+require_once __DIR__ . '/helper.php';
+
 modShackSearchHelper::init($params, $module->id);
 
 $ver = new JVersion;
@@ -35,5 +52,6 @@ $ver = $ver->getShortVersion();
 $version = $ver[0];
 
 $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
+
 require JModuleHelper::getLayoutPath('mod_shacksearch', $params->get('layout', 'default'));
 
