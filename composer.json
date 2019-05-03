@@ -9,7 +9,9 @@
         "element-short"  : "shacksearch",
         "name"           : "Shack Search",
         "client"         : "site",
-        "package-license": "free"
+        "package-license": "free",
+        "target-platform": "3.*",
+        "infourl"        : "/changelog/shack-search/"
     },
     "authors"          : [
         {
