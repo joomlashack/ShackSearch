@@ -31,7 +31,7 @@
         <folder>tmpl</folder>
     </files>
 
-    <config>
+    <config addfieldpath="/modules/mod_shacksearch/form/fields">
         <fields name="params" addfieldpath="/modules/mod_shacksearch/fields">
             <fieldset name="basic">
                 <field name="langhack"
