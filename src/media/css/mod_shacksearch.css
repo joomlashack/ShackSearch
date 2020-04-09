@@ -53,6 +53,11 @@
     padding: 0px 5px;
     line-height: 28px;
     overflow: hidden;
+
+}
+
+.shacksearch_popup .ps_footer_links:hover a {
+    cursor: pointer;
 }
 
 .shacksearch_popup .ps_footer_links .ps_link_prev {
