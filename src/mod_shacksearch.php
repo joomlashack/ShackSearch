@@ -23,6 +23,7 @@
  * along with ShackSearch.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\Registry\Registry;
 
 defined('_JEXEC') or die();
@@ -53,5 +54,5 @@ $version = $ver[0];
 
 $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
 
-require JModuleHelper::getLayoutPath('mod_shacksearch', $params->get('layout', 'default'));
+require ModuleHelper::getLayoutPath('mod_shacksearch', $params->get('layout', 'default'));
 

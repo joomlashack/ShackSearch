@@ -23,9 +23,15 @@
  * along with ShackSearch.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Helper\SearchHelper as JSearchHelper;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Uri\Uri;
 use Joomla\Registry\Registry;
 
-defined('_JEXEC') or die;
+defined('_JEXEC') or die();
 
 class modShackSearchHelper
 {
@@ -35,17 +41,17 @@ class modShackSearchHelper
      */
     public static function init(Registry $params, $id)
     {
-        JHtml::_('stylesheet', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
-        JHtml::_('stylesheet', 'mod_shacksearch/mod_shacksearch.css', array('relative' => true));
+        HTMLHelper::_('stylesheet', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+        HTMLHelper::_('stylesheet', 'mod_shacksearch/mod_shacksearch.css', ['relative' => true]);
 
-        $settings = (object)array(
-            'searchText'     => JText::_('MOD_SHACKSEARCH_SEARCH_LABEL'),
-            'nextLinkText'   => JText::_('MOD_SHACKSEARCH_NEXT_LABEL'),
-            'prevLinkText'   => JText::_('MOD_SHACKSEARCH_PREV_LABEL'),
-            'viewAllText'    => JText::_('MOD_SHACKSEARCH_VIEW_ALL_LABEL'),
-            'resultText'     => JText::_('MOD_SHACKSEARCH_RESULTS_LABEL'),
-            'readMoreText'   => JText::_('MOD_SHACKSEARCH_READ_MORE_LABEL'),
-            'baseUrl'        => JURI::root(),
+        $settings = (object)[
+            'searchText'     => Text::_('MOD_SHACKSEARCH_SEARCH_LABEL'),
+            'nextLinkText'   => Text::_('MOD_SHACKSEARCH_NEXT_LABEL'),
+            'prevLinkText'   => Text::_('MOD_SHACKSEARCH_PREV_LABEL'),
+            'viewAllText'    => Text::_('MOD_SHACKSEARCH_VIEW_ALL_LABEL'),
+            'resultText'     => Text::_('MOD_SHACKSEARCH_RESULTS_LABEL'),
+            'readMoreText'   => Text::_('MOD_SHACKSEARCH_READ_MORE_LABEL'),
+            'baseUrl'        => Uri::root(),
             'ordering'       => $params->get('ordering', 'newest'),
             'use_grouping'   => (boolean)$params->get('use_grouping', false),
             'searchType'     => $params->get('searchphrase', 'all'),
@@ -53,17 +59,17 @@ class modShackSearchHelper
             'numsearchstart' => (int)$params->get('searchstartchar', 4),
             'use_images'     => (boolean)$params->get('use_images', true),
             'show_read_more' => (boolean)$params->get('show_readmore', true),
-            'areas'          => $params->get('areas', array()),
-            'link_read_more' => JRoute::_('index.php?option=com_search')
-        );
+            'areas'          => $params->get('areas', []),
+            'link_read_more' => Route::_('index.php?option=com_search')
+        ];
 
-        $document = JFactory::getDocument();
+        $document = Factory::getDocument();
 
         $document->addScriptDeclaration('var ps_settings_' . $id . ' = ' . json_encode($settings) . ';');
-        JHtml::_('script', 'mod_shacksearch/shacksearch.js', array('relative' => true));
+        HTMLHelper::_('script', 'mod_shacksearch/shacksearch.js', ['relative' => true]);
 
         $document->addScriptDeclaration('shacksearches.push( ' . $id . ');');
-        JHtml::_('script', 'mod_shacksearch/gshacksearch/gshacksearch.nocache.js', array('relative' => true));
+        HTMLHelper::_('script', 'mod_shacksearch/gshacksearch/gshacksearch.nocache.js', ['relative' => true]);
     }
 
     public static function getAjax()
@@ -71,12 +77,12 @@ class modShackSearchHelper
         require_once JPATH_SITE . '/components/com_search/models/search.php';
         require_once JPATH_ADMINISTRATOR . '/components/com_search/helpers/search.php';
 
-        $input        = JFactory::getApplication()->input;
+        $input        = Factory::getApplication()->input;
         $word         = $input->getString('searchword', '');
         $ordering     = $input->getString('ordering', 'newest');
         $searchphrase = $input->getString('searchphrase', 'all');
-        $results      = array();
-        $searchResult = new stdClass();
+        $results      = [];
+        $searchResult = (object)[];
         $total        = 0;
         $error        = null;
         if ($word != '') {
@@ -85,15 +91,15 @@ class modShackSearchHelper
             // log the search
             JSearchHelper::logSearch($word, 'com_search');
 
-            $lang        = JFactory::getLanguage();
+            $lang        = Factory::getLanguage();
             $upper_limit = $lang->getUpperLimitSearchWord();
             $lower_limit = $lang->getLowerLimitSearchWord();
             if (SearchHelper::limitSearchWord($searchword)) {
-                $error = JText::sprintf('COM_SEARCH_ERROR_SEARCH_MESSAGE', $lower_limit, $upper_limit);
+                $error = Text::sprintf('COM_SEARCH_ERROR_SEARCH_MESSAGE', $lower_limit, $upper_limit);
             }
 
             if (SearchHelper::santiseSearchWord($word, $model->getState()->get('match'))) {
-                $error = JText::_('COM_SEARCH_ERROR_IGNOREKEYWORD');
+                $error = Text::_('COM_SEARCH_ERROR_IGNOREKEYWORD');
             }
 
             $model->getState()->set('keyword', $word);
@@ -109,7 +115,7 @@ class modShackSearchHelper
                     $result = &$results[$i];
 
                     if ($model->getState()->get('match') == 'exact') {
-                        $searchwords = array($word);
+                        $searchwords = [$word];
                         $needle      = $word;
                     } else {
                         $searchworda = preg_replace('#\xE3\x80\x80#s', ' ', $word);
@@ -134,15 +140,15 @@ class modShackSearchHelper
                     $result->title = preg_replace($searchRegex, $highlighter, $result->title);
 
                     if ($result->created) {
-                        $created = JHtml::_('date', $result->created, JText::_('DATE_FORMAT_LC3'));
+                        $created = HTMLHelper::_('date', $result->created, Text::_('DATE_FORMAT_LC3'));
                     } else {
                         $created = '';
                     }
 
-                    $result->text    = JHtml::_('content.prepare', $result->text, '', 'com_search.search');
+                    $result->text    = HTMLHelper::_('content.prepare', $result->text, '', 'com_search.search');
                     $result->created = $created;
                     $result->count   = $i + 1;
-                    $result->href    = JRoute::_($result->href);
+                    $result->href    = Route::_($result->href);
                 }
             }
         }
