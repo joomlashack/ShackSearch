@@ -1,151 +1,151 @@
 @CHARSET "UTF-8";
 .shacksearch_popup {
-    margin-bottom: 10px;
-    background-color: #FFFFFF;
-    border: 1px solid #DDDDDD;
-    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    z-index: 999;
+  margin-bottom: 10px;
+  background-color: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  z-index: 999;
 }
 
 .shacksearch_popup .ps_head .ps_result {
-    background-color: #EEEEEE;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 4px;
+  background-color: #EEEEEE;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 4px;
 }
 
 .shacksearch_popup .ps_row_0,
 .shacksearch_popup .ps_row_1 {
-    background-color: #FFFFFF;
-    border-top: 2px solid #EEEEEE;
-    padding: 5px;
+  background-color: #FFFFFF;
+  border-top: 2px solid #EEEEEE;
+  padding: 5px;
 }
 
 .shacksearch_popup .ps_row_0_head,
 .shacksearch_popup .ps_row_1_head {
-    padding: 3px 0;
+  padding: 3px 0;
 }
 
 .shacksearch_popup .ps_row_0_head .ps_row_0_catlink,
 .shacksearch_popup .ps_row_1_head .ps_row_1_catlink {
-    font-size: 1.2em;
+  font-size: 1.2em;
 }
 
 .shacksearch_popup .ps_row_0_innerbody,
 .shacksearch_popup .ps_row_1_innerbody {
-    padding-bottom: 3px;
+  padding-bottom: 3px;
 }
 
 .shacksearch_popup .ps_row_0_innerbody .highlight,
 .shacksearch_popup .ps_row_1_innerbody .highlight,
 .shacksearch_popup .ps_row_0_subhead .highlight,
 .shacksearch_popup .ps_row_0_subhead .highlight {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .shacksearch_popup .ps_footer_links {
-    border-top: 2px solid #EEEEEE;
-    padding: 0px 5px;
-    line-height: 28px;
-    overflow: hidden;
+  border-top: 2px solid #EEEEEE;
+  padding: 0px 5px;
+  line-height: 28px;
+  overflow: hidden;
 
 }
 
 .shacksearch_popup .ps_footer_links:hover a {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .shacksearch_popup .ps_footer_links .ps_link_prev {
-    float: left;
+  float: left;
 }
 
 .shacksearch_popup .ps_footer_links .ps_link_next {
-    float: right;
+  float: right;
 }
 
 .shacksearch_popup .ps_viewall {
-    background-color: #EEEEEE;
-    overflow: hidden;
-    padding: 5px;
-    text-align: center;
+  background-color: #EEEEEE;
+  overflow: hidden;
+  padding: 5px;
+  text-align: center;
 }
 
 .shacksearch > div > div {
-    position: relative;
-    max-width: 400px;
+  position: relative;
+  max-width: 400px;
 }
 
 .shacksearch .ps_search_image {
-    cursor: pointer;
-    vertical-align: top;
-    position: absolute;
-    top: 0;
-    right: 0;
+  cursor: pointer;
+  vertical-align: top;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .shacksearch_j3 .ps_search_image {
-    margin: 4px;
+  margin: 4px;
 }
 
 .shacksearch .ps_search_box {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 4px 26px 4px 6px;
-    min-height: 28px;
-    border: 1px solid #DDDDDD;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 4px 26px 4px 6px;
+  min-height: 28px;
+  border: 1px solid #DDDDDD;
 }
 
 @media (max-width: 767px) {
-    .shacksearch_j3 > div > div {
-        max-width: 100%;
-    }
+  .shacksearch_j3 > div > div {
+    max-width: 100%;
+  }
 
-    .shacksearch_j3 .ps_search_box {
-        /*        width: 95.7%;*/
-    }
+  .shacksearch_j3 .ps_search_box {
+    /*        width: 95.7%;*/
+  }
 }
 
 .ps_class_search_search,
 .ps_class_search_spinner,
 .ps_class_search_clear {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 28px;
-    width: 28px;
-    cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 28px;
+  width: 28px;
+  cursor: pointer;
 }
 
 .ps_class_search_search:after,
 .ps_class_search_spinner:after,
 .ps_class_search_clear:after {
-    display: block;
-    font-family: 'FontAwesome';
-    font-size: 18px;
-    line-height: 28px;
-    height: 28px;
-    width: 28px;
-    text-align: center;
+  display: block;
+  font-family: 'FontAwesome';
+  font-size: 18px;
+  line-height: 28px;
+  height: 28px;
+  width: 28px;
+  text-align: center;
 }
 
 .ps_class_search_search:after {
-    content: "\f002"; /* magnifying glass */
-    color: #333;
+  content: "\f002"; /* magnifying glass */
+  color: #333;
 }
 
 .ps_class_search_spinner:after {
-    -webkit-animation: fa-spin 1s infinite steps(8);
-    animation: fa-spin 1s infinite steps(8);
-    content: "\f110"; /* spinner */
+  -webkit-animation: fa-spin 1s infinite steps(8);
+  animation: fa-spin 1s infinite steps(8);
+  content: "\f110"; /* spinner */
 }
 
 .ps_class_search_clear:after {
-    content: "\f00d"; /* cross */
+  content: "\f00d"; /* cross */
 }
