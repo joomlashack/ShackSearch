@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension type="module" version="3.7" client="site" method="upgrade">
-    <name>Shack Search</name>
+    <name>MOD_SHACKSEARCH</name>
     <author>JoomlaShack</author>
     <creationDate>October 22 2020</creationDate>
     <copyright>Copyright 2018-2020 joomlashack.com. All rights reserved.</copyright>
