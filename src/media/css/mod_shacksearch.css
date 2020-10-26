@@ -137,6 +137,7 @@
 
 .ps_class_search_search:after {
     content: "\f002"; /* magnifying glass */
+    color: #333;
 }
 
 .ps_class_search_spinner:after {
